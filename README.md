@@ -13,7 +13,7 @@ node, vue, vite.
 
 Front will run on 
 
-    Local:   http://localhost:8817/
+    Local:   http://localhost:6969/
 
  you can change the port in vite.config.js file
  
