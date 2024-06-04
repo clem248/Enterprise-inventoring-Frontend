@@ -96,6 +96,9 @@
         <MDBNavbarItem href="#" linkClass="link-secondary"
           ><router-link to="/QrFill" class="nav-link">Заполнение</router-link></MDBNavbarItem
         >
+        <MDBNavbarItem href="#" linkClass="link-secondary"
+          ><router-link to="/Inventory" class="nav-link">Инвентарь</router-link></MDBNavbarItem
+        >
       </MDBNavbarNav>
     </MDBCollapse>
 
