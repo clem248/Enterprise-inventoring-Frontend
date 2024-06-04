@@ -14,8 +14,8 @@ export default defineConfig({
     }
   },
   server: {
-    port: '6969',
-    host: '0.0.0.0'
+    port: '8080',
+    host: '13.51.198.136'
   }
 })
 

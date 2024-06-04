@@ -1,17 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <title>Inventoring</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/mdb-vue-ui-kit/css/mdb.min.css"
+    />
+  </head>
 
+  <body>
+    <div id="app">
+      <mdb-btn color="primary">Button</mdb-btn>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mdb-vue-ui-kit/js/mdb.umd.min.js"></script>
+    <script>
+      const App = {
+        components: {
+          mdbBtn: mdb.MDBBtn,
+        },
+      };
+
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
+<html>
 <head>
-  <title>Вход</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/src/assets/main.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
+    <title>Inventoring</title>
 </head>
 
 <body style="overflow: hidden;">
   <div id="app" class="auth-block"></div>
   <script type="module" src="/src/main.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <div class="container" data-mdb-perfect-scrollbar="true"></div>
 </body>
+<style scoped>
+  .navbar {
+    background-color: #ff0000;
+    color: #000000;
+    padding: 10px 20px;
+  }
+  html {
+    scrollbar-width: normal;
+    scrollbar-color: #777 #555;
+  }
+  html::-webkit-scrollbar{
+    width: 4vw;
+  }
+  html::-webkit-scrollbar-thumb {
+    background-color: #7775;
+  }
+  html::-webkit-scrollbar-track {
+    background-color: #5555;
+  }
+
+  
+  
+  .navbar-brand {
+    float: left;
+    font-weight: bold;
+  }
+  
+  .navbar-nav {
+    float: right;
+  }
+  
+  .navbar-nav li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .nav-link {
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    color: #2200ff;
+  }
+  </style>
+
 
 </html>

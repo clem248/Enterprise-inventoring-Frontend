@@ -13,4 +13,20 @@ app.mount('#app');
 
 <style>
 /* стили для приложения */
+html {
+    scrollbar-width: normal;
+    scrollbar-color: #777 #555;
+  }
+  html::-webkit-scrollbar{
+    width: 4vw;
+  }
+  html::-webkit-scrollbar-thumb {
+    background-color: #7775;
+  }
+  html::-webkit-scrollbar-track {
+    background-color: #5555;
+  }
+#app {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
 </style>
