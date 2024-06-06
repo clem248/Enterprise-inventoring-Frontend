@@ -1,0 +1,87 @@
+.auth {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    margin-top: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"],
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button,
+.btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.navbar {
+    background-color: #ff0000;
+    color: #000000;
+    padding: 10px 20px;
+}
+
+.navbar-brand {
+    float: left;
+    font-weight: bold;
+}
+
+.navbar-nav {
+    float: right;
+}
+
+.navbar-nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.nav-link {
+    color: #000000;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #2200ff;
+}
+
+.html {
+    scrollbar-width: normal;
+    scrollbar-color: #777 #555;
+}
+
+.html::-webkit-scrollbar {
+    width: 4vw;
+}
+
+.html::-webkit-scrollbar-thumb {
+    background-color: #7775;
+}
+
+.html::-webkit-scrollbar-track {
+    background-color: #5555;
+}

@@ -1,32 +1,32 @@
 <template>
-  <router-view></router-view>
+  <div id="app">
+    <Navbar v-if="showNavbar" />
+    <router-view />
+  </div>
 </template>
 
 <script>
-import { createApp } from 'vue';
-import router from './router.js';
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import Navbar from './components/Navbar.vue';
 
-const app = createApp({});
-app.use(router);
-app.mount('#app');
+export default {
+  components: {
+    Navbar
+  },
+  setup() {
+    const route = useRoute();
+    const showNavbar = ref(route.path !== '/login');
+
+    watch(route, (newRoute) => {
+      showNavbar.value = newRoute.path !== '/login';
+    });
+
+    return {showNavbar};
+  }
+};
 </script>
 
 <style>
-/* стили для приложения */
-html {
-    scrollbar-width: normal;
-    scrollbar-color: #777 #555;
-  }
-  html::-webkit-scrollbar{
-    width: 4vw;
-  }
-  html::-webkit-scrollbar-thumb {
-    background-color: #7775;
-  }
-  html::-webkit-scrollbar-track {
-    background-color: #5555;
-  }
-#app {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-}
+/* Добавьте любые стили, которые могут понадобиться */
 </style>
