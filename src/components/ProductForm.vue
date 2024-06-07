@@ -1,6 +1,6 @@
 <template>
   <div class="form-container">
-    <h2>Добавить продукт</h2>
+    <h2>Добавить продукт и скачать QR</h2>
     <form @submit.prevent="onSubmit">
       <div class="form-group">
         <label for="name">Название:</label>
@@ -8,18 +8,18 @@
       </div>
       <div class="form-group">
         <label for="category">Категория:</label>
-        <select id="category" v-model="product.category.id" class="form-control" required>
-          <option value="1">Компьютерное комплектующее</option>
-          <option value="2">Мебель</option>
-          <option value="3">Инструменты</option>
+        <select id="category" v-model="product.category" class="form-control" required>
+          <option value="Компьютерное комплектующее">Компьютерное комплектующее</option>
+          <option value="Мебель">Мебель</option>
+          <option value="Инструменты">Инструменты</option>
         </select>
       </div>
       <div class="form-group">
         <label for="quality">Качество:</label>
-        <select id="quality" v-model="product.quality.id" class="form-control" required>
-          <option value="1">Низкое</option>
-          <option value="2">Среднее</option>
-          <option value="3">Высокое</option>
+        <select id="quality" v-model="product.quality" class="form-control" required>
+          <option value="Низкое">Низкое</option>
+          <option value="Среднее">Среднее</option>
+          <option value="Высокое">Высокое</option>
         </select>
       </div>
       <div class="form-group">
@@ -28,11 +28,11 @@
       </div>
       <div class="form-group">
         <label for="location">Расположение:</label>
-        <input type="text" id="location" v-model="product.location.id" class="form-control" required>
+        <input type="text" id="location" v-model="product.location" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="clientId">ID Клиента:</label>
-        <input type="text" id="clientId" v-model="product.client.id" class="form-control" required>
+        <input type="text" id="clientId" v-model="product.client" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="picture">Картинка:</label>
@@ -57,10 +57,10 @@ export default {
         name: '',
         picture: '',
         qr: '',
-        category: { id: 1 },
-        quality: { id: 1 },
-        location: { id: 1 },
-        client: { id: 1 },
+        category: '',
+        quality: '',
+        location: '',
+        client: '',
         status: ''
       },
     };
@@ -81,10 +81,10 @@ export default {
             name: '',
             picture: '',
             qr: '',
-            category: { id: 1 },
-            quality: { id: 1 },
-            location: { id: 1 },
-            client: { id: '' },
+            category: '',
+            quality: '',
+            location: '',
+            client: '',
             status: ''
           };
         } else {
