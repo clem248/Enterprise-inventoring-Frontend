@@ -15,7 +15,6 @@
         <th>Статус</th>
       </tr>
       <button @click="searchInvents">Найти</button>
-
       </thead>
       <tbody>
       <tr v-for="invent in invents" :key="invent.id">
@@ -23,16 +22,17 @@
         <td>{{ invent.name }}</td>
         <td>{{ invent.picture }}</td>
         <td>{{ invent.qr }}</td>
-        <td>{{ invent.category.category_name }}</td>
-        <td>{{ invent.quality.quality_name }}</td>
-        <td>{{ invent.location.location_name }}</td>
-        <td>{{ invent.client.fullName }}</td>
+        <td>{{ invent.category.categoryName }}</td>
+        <td>{{ invent.quality.qualityName }}</td>
+        <td>{{ invent.location.locationName }}</td>
+        <td>{{ invent.client }}</td>
         <td>{{ invent.status }}</td>
       </tr>
       </tbody>
     </table>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios';

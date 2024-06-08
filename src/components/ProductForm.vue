@@ -8,18 +8,18 @@
       </div>
       <div class="form-group">
         <label for="category">Категория:</label>
-        <select id="category" v-model="product.category" class="form-control" required>
-          <option value="Компьютерное комплектующее">Компьютерное комплектующее</option>
-          <option value="Мебель">Мебель</option>
-          <option value="Инструменты">Инструменты</option>
+        <select id="category" v-model="product.category.categoryName" class="form-control" required>
+          <option v-for="category in categories" :key="category" :value="category">
+            {{ category }}
+          </option>
         </select>
       </div>
       <div class="form-group">
         <label for="quality">Качество:</label>
-        <select id="quality" v-model="product.quality" class="form-control" required>
-          <option value="Низкое">Низкое</option>
-          <option value="Среднее">Среднее</option>
-          <option value="Высокое">Высокое</option>
+        <select id="quality" v-model="product.quality.qualityName" class="form-control" required>
+          <option v-for="quality in qualities" :key="quality" :value="quality">
+            {{ quality }}
+          </option>
         </select>
       </div>
       <div class="form-group">
@@ -28,7 +28,11 @@
       </div>
       <div class="form-group">
         <label for="location">Расположение:</label>
-        <input type="text" id="location" v-model="product.location" class="form-control" required>
+        <select id="location" v-model="product.location.locationName" class="form-control" required>
+          <option v-for="location in locations" :key="location" :value="location">
+            {{ location }}
+          </option>
+        </select>
       </div>
       <div class="form-group">
         <label for="clientId">ID Клиента:</label>
@@ -44,6 +48,14 @@
       </div>
       <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
+
+    <!-- Debug information -->
+    <div class="debug">
+      <h3>Debug Info</h3>
+      <pre>Categories: {{ categories }}</pre>
+      <pre>Qualities: {{ qualities }}</pre>
+      <pre>Locations: {{ locations }}</pre>
+    </div>
   </div>
 </template>
 
@@ -57,15 +69,63 @@ export default {
         name: '',
         picture: '',
         qr: '',
-        category: '',
-        quality: '',
-        location: '',
+        category: { categoryName: '' },
+        quality: { qualityName: '' },
+        location: { locationName: '' },
         client: '',
         status: ''
       },
+      categories: [],
+      qualities: [],
+      locations: []
     };
   },
+  mounted() {
+    console.log('Component mounted, fetching initial data...');
+    this.fetchCategories();
+    this.fetchQualities();
+    this.fetchLocations();
+  },
   methods: {
+    async fetchCategories() {
+      try {
+        const response = await axios.get('http://localhost:8080/api/admin/categories', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        this.categories = response.data.map(category => category.categoryName);
+        console.log('Categories loaded:', this.categories);
+      } catch (error) {
+        console.error('Ошибка при загрузке категорий:', error);
+      }
+    },
+    async fetchQualities() {
+      try {
+        const response = await axios.get('http://localhost:8080/api/admin/qualities', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        this.qualities = response.data.map(quality => quality.qualityName);
+        console.log('Qualities loaded:', this.qualities);
+      } catch (error) {
+        console.error('Ошибка при загрузке качеств:', error);
+      }
+    },
+    async fetchLocations() {
+      try {
+        const response = await axios.get('http://localhost:8080/api/admin/locations', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        this.locations = response.data.map(location => location.locationName);
+        console.log('Locations loaded:', this.locations);
+      } catch (error) {
+        console.error('Ошибка при загрузке локаций:', error);
+      }
+    },
     async onSubmit() {
       try {
         const response = await axios.post('http://localhost:8080/api/admin/invent/save', this.product, {
@@ -81,9 +141,9 @@ export default {
             name: '',
             picture: '',
             qr: '',
-            category: '',
-            quality: '',
-            location: '',
+            category: { categoryName: '' },
+            quality: { qualityName: '' },
+            location: { locationName: '' },
             client: '',
             status: ''
           };
@@ -98,4 +158,13 @@ export default {
 };
 </script>
 
-<style scoped src="../styles/styles.css"></style>
+<style scoped>
+/* Your existing styles */
+
+.debug {
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+</style>
