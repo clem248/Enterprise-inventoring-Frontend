@@ -2,14 +2,19 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import Auth from './components/Auth.vue';
 import Home from './components/Home.vue';
 import ProductForm from './components/ProductForm.vue';
-import InventsTable from './components/InventsTable.vue'; // Импорт нового компонента
+import InventsTable from './components/InventsTable.vue';
+import CategoryTable from "@/components/CategoryTable.vue";
+import LocationTable from "@/components/LocationTable.vue"; // Импорт нового компонента
 
 const routes = [
     { path: '/', redirect: '/login' },
     { path: '/login', component: Auth },
     { path: '/home', component: Home, meta: { requiresAuth: true } },
     { path: '/ProductForm', component: ProductForm, meta: { requiresAuth: true } },
-    { path: '/InventsTable', component: InventsTable, meta: { requiresAuth: true } } // Новый маршрут
+    { path: '/InventsTable', component: InventsTable, meta: { requiresAuth: true } },
+    { path: '/CategoryTable', component: CategoryTable, meta: { requiresAuth: true } },
+    { path: '/LocationTable', component: LocationTable, meta: { requiresAuth: true } }
+
 ];
 
 const router = createRouter({

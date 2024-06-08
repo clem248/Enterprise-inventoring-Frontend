@@ -12,6 +12,12 @@
         <MDBNavbarItem linkClass="link-secondary">
           <router-link to="/InventsTable" class="nav-link">Список инвентарных предметов</router-link>
         </MDBNavbarItem>
+        <MDBNavbarItem linkClass="link-secondary">
+          <router-link to="/LocationTable" class="nav-link">Список местоположений</router-link>
+        </MDBNavbarItem>
+        <MDBNavbarItem linkClass="link-secondary">
+          <router-link to="/CategoryTable" class="nav-link">Список категорий</router-link>
+        </MDBNavbarItem>
       </MDBNavbarNav>
     </MDBCollapse>
   </MDBNavbar>
