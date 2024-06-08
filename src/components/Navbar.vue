@@ -1,51 +1,38 @@
 <template>
-  <MDBNavbar container expand="lg" bg="light" class="d-flex justify-content-between">
-    <MDBNavbarToggler target="#navbarColor01" @click="collapse7 = !collapse7"></MDBNavbarToggler>
-    <MDBCollapse id="navbarColor01" v-model="collapse7">
-      <MDBNavbarNav class="mb-2 mb-lg-0">
-        <MDBNavbarItem linkClass="link-secondary">
-          <router-link to="/home" class="nav-link">Главная</router-link>
-        </MDBNavbarItem>
-        <MDBNavbarItem linkClass="link-secondary">
-          <router-link to="/ProductForm" class="nav-link">Добавить продукт</router-link>
-        </MDBNavbarItem>
-        <MDBNavbarItem linkClass="link-secondary">
-          <router-link to="/InventsTable" class="nav-link">Список инвентарных предметов</router-link>
-        </MDBNavbarItem>
-        <MDBNavbarItem linkClass="link-secondary">
-          <router-link to="/LocationTable" class="nav-link">Список местоположений</router-link>
-        </MDBNavbarItem>
-        <MDBNavbarItem linkClass="link-secondary">
-          <router-link to="/CategoryTable" class="nav-link">Список категорий</router-link>
-        </MDBNavbarItem>
-      </MDBNavbarNav>
-    </MDBCollapse>
-  </MDBNavbar>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">Inventoring</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <router-link to="/home" class="nav-link">Главная</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/ProductForm" class="nav-link">Добавить продукт</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/InventsTable" class="nav-link">Список инвентарных предметов</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/LocationTable" class="nav-link">Список местоположений</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/CategoryTable" class="nav-link">Список категорий</router-link>
+      </li>
+    </ul>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button">Выйти</button>
+  </div>
+</nav>
 </template>
 
 <script>
-import { ref } from 'vue';
-import {
-  MDBNavbar,
-  MDBNavbarItem,
-  MDBNavbarNav,
-  MDBNavbarToggler,
-  MDBCollapse
-} from 'mdb-vue-ui-kit';
+
 
 export default {
-  name: 'Navbar',
-  setup() {
-    const collapse7 = ref(false);
-    return { collapse7 };
-  },
-  components: {
-    MDBNavbar,
-    MDBNavbarItem,
-    MDBNavbarNav,
-    MDBNavbarToggler,
-    MDBCollapse
-  }
+  
 };
 </script>
 

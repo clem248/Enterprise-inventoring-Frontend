@@ -1,4 +1,5 @@
 <template>
+  <body>
   <div class="form-container">
     <h2>Добавить продукт и скачать QR</h2>
     <form @submit.prevent="onSubmit">
@@ -57,6 +58,7 @@
       <pre>Locations: {{ locations }}</pre>
     </div>
   </div>
+</body>
 </template>
 
 <script>
@@ -166,5 +168,24 @@ export default {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   padding: 10px;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 </style>

@@ -1,20 +1,20 @@
 <template>
   <div class="table-container">
     <h2>Список инвентарных предметов</h2>
-    <table class="table">
-      <thead>
+    <button @click="searchInvents">Найти</button>
+    <table class="table table-hover">
+      <thead class="thead-dark">
       <tr>
-        <th>ID</th>
-        <th>Название</th>
-        <th>Картинка</th>
-        <th>QR</th>
-        <th>Категория</th>
-        <th>Качество</th>
-        <th>Расположение</th>
-        <th>Клиент</th>
-        <th>Статус</th>
+        <th scope="col">ID</th>
+        <th scope="col">Название</th>
+        <th scope="col">Картинка</th>
+        <th scope="col">QR</th>
+        <th scope="col">Категория</th>
+        <th scope="col">Качество</th>
+        <th scope="col">Расположение</th>
+        <th scope="col">Клиент</th>
+        <th scope="col">Статус</th>
       </tr>
-      <button @click="searchInvents">Найти</button>
       </thead>
       <tbody>
       <tr v-for="invent in invents" :key="invent.id">

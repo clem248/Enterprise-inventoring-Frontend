@@ -1,8 +1,8 @@
 <template>
   <div class="table-container">
     <h2>Список категорий</h2>
-    <table class="table">
-      <thead>
+    <table class="table table-hover">
+      <thead class="thead-dark">
       <tr>
         <th>ID</th>
         <th>Название</th>

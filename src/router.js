@@ -7,7 +7,7 @@ import CategoryTable from "@/components/CategoryTable.vue";
 import LocationTable from "@/components/LocationTable.vue"; // Импорт нового компонента
 
 const routes = [
-    { path: '/', redirect: '/login' },
+    { path: '/!', redirect: '/login' },
     { path: '/login', component: Auth },
     { path: '/home', component: Home, meta: { requiresAuth: true } },
     { path: '/ProductForm', component: ProductForm, meta: { requiresAuth: true } },

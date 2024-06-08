@@ -6,6 +6,21 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+button[data-v-4d808a77], .btn[data-v-4d808a77] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto;
+}
+.form-control[data-v-ce5adfa1] {
+    min-height: auto;
+    padding: 4.5px 12px 3.68px 12px;
+    transition: all 0.1s linear;
+    box-shadow: none;
+}
 
 .form-group {
     margin-bottom: 15px;
@@ -33,6 +48,7 @@ button,
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: auto;
 }
 
 .error-message {
@@ -69,19 +85,22 @@ button,
     color: #2200ff;
 }
 
-.html {
-    scrollbar-width: normal;
-    scrollbar-color: #777 #555;
-}
-
-.html::-webkit-scrollbar {
-    width: 4vw;
-}
-
-.html::-webkit-scrollbar-thumb {
-    background-color: #7775;
-}
-
-.html::-webkit-scrollbar-track {
-    background-color: #5555;
-}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
