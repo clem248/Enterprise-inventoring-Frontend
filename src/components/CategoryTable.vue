@@ -1,4 +1,5 @@
 <template>
+  <body>
   <div class="table-container">
     <h2>Список категорий</h2>
     <table class="table">
@@ -15,7 +16,14 @@
       </tr>
       </tbody>
     </table>
+    <div class="button-container">
+  <button @click="addCat">Добавить</button>
+  <button @click="delCat">Удалить</button>
+  <button @click="redCat">Редактировать</button>
+  <button @click="create">Создать</button>
   </div>
+</div>
+</body>
 </template>
 
 <script>
@@ -49,8 +57,7 @@ export default {
 
 <style scoped>
 .table-container {
-  padding: 10% 10% 0 10%;
-  overflow: auto;
+  padding: 2% 2% 0 2%;
 }
 
 .table {

@@ -1,4 +1,5 @@
 <template>
+  <body>
   <div class="form-container">
     <h2>Добавить продукт и скачать QR</h2>
     <form @submit.prevent="onSubmit">
@@ -48,6 +49,9 @@
       </div>
       <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
+    <div class="button-container">
+    <button @click="downloadQR">Скачать</button>
+  </div>
 
     <!-- Debug information -->
     <div class="debug">
@@ -57,6 +61,7 @@
       <pre>Locations: {{ locations }}</pre>
     </div>
   </div>
+</body>
 </template>
 
 <script>
@@ -156,6 +161,7 @@ export default {
     }
   }
 };
+
 </script>
 
 <style scoped>
@@ -167,4 +173,8 @@ export default {
   border: 1px solid #ddd;
   padding: 10px;
 }
+
+
 </style>
+
+

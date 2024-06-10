@@ -1,4 +1,5 @@
 <template>
+  <body>
   <div class="table-container">
     <h2>Список инвентарных предметов</h2>
     <table class="table">
@@ -30,7 +31,14 @@
       </tr>
       </tbody>
     </table>
+    <div class="button-container">
+  <button @click="addInvents">Добавить</button>
+  <button @click="delInvents">Удалить</button>
+  <button @click="redInvents">Редактировать</button>
+  <button @click="create">Создать</button>
+</div>
   </div>
+</body>
 </template>
 
 
@@ -99,16 +107,17 @@ export default {
         console.error('Ошибка при выполнении запроса:', error);
       }
     }
+    
 
 
   }
+  
 };
 </script>
 
 <style scoped>
 .table-container {
-  padding: 10% 10% 0 10%;
-  overflow: auto;
+  padding: 2% 2% 0 2%;
 }
 
 .table {

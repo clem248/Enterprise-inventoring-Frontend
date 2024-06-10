@@ -1,8 +1,9 @@
 <template>
+  <body>
   <div class="table-container">
     <h2>Список местоположений</h2>
     <table class="table">
-      <thead>
+      <thead class="thead-dark">
       <tr>
         <th>ID</th>
         <th>Название</th>
@@ -15,7 +16,14 @@
       </tr>
       </tbody>
     </table>
+    <div class="button-container">
+    <button @click="addLoc">Добавить</button>
+    <button @click="delLoc">Удалить</button>
+    <button @click="redLoc">Редактировать</button>
+    <button @click="create">Создать</button>
   </div>
+  </div>
+</body>
 </template>
 
 <script>
@@ -50,8 +58,8 @@ export default {
 
 <style scoped>
 .table-container {
-  padding: 10% 10% 0 10%;
-  overflow: auto;
+  padding: 2% 2% 0 2%;
+  
 }
 
 .table {

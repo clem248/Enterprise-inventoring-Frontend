@@ -18,6 +18,9 @@
         <MDBNavbarItem linkClass="link-secondary">
           <router-link to="/CategoryTable" class="nav-link">Список категорий</router-link>
         </MDBNavbarItem>
+        <MDBNavbarItem linkClass="link-secondary">
+          <button @click="logout">Выйти</button>
+        </MDBNavbarItem>
       </MDBNavbarNav>
     </MDBCollapse>
   </MDBNavbar>

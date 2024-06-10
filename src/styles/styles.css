@@ -6,6 +6,44 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+.button-container {
+    padding: 20px;
+}
+.button-container button {
+    margin-right: 10px; /* Space between buttons */
+}
+button [data-v-ce5adfa1]{
+    padding: 10px 200px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 370px;
+}
+.QR{
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 370px; 
+} 
+button[data-v-4d808a77], .btn[data-v-4d808a77] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 370px;
+}
+body{ 
+    padding: 20px;
+    overflow-y: auto; 
+    height: 90vh;
+} 
 
 .form-group {
     margin-bottom: 15px;
@@ -30,7 +68,7 @@ button,
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
-    border: none;
+    border: 10px;
     border-radius: 5px;
     cursor: pointer;
 }
