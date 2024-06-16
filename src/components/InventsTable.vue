@@ -1,43 +1,46 @@
 <template>
   <body>
   <div class="table-container">
-    <h2>Список инвентарных предметов</h2>
+    <h2>Список инвентаризированных предметов</h2>
     <table class="table">
       <thead>
-      <tr>
-        <th>ID</th>
-        <th>Название</th>
-        <th>Картинка</th>
-        <th>QR</th>
-        <th>Категория</th>
-        <th>Качество</th>
-        <th>Расположение</th>
-        <th>Клиент</th>
-        <th>Статус</th>
-      </tr>
-      <button @click="searchInvents">Найти</button>
+        <tr>
+          <th>ID</th>
+          <th>Название</th>
+          <th>Картинка</th>
+          <th>QR</th>
+          <th>Категория</th>
+          <th>Качество</th>
+          <th>Расположение</th>
+          <th>Клиент</th>
+          <th>Статус</th>
+        </tr>
       </thead>
       <tbody>
-      <tr v-for="invent in invents" :key="invent.id">
-        <td>{{ invent.id }}</td>
-        <td>{{ invent.name }}</td>
-        <td>{{ invent.picture }}</td>
-        <td>{{ invent.qr }}</td>
-        <td>{{ invent.category.categoryName }}</td>
-        <td>{{ invent.quality.qualityName }}</td>
-        <td>{{ invent.location.locationName }}</td>
-        <td>{{ invent.client }}</td>
-        <td>{{ invent.status }}</td>
-      </tr>
+        <tr v-for="invent in invents" :key="invent.id">
+          <td>{{ invent.id }}</td>
+          <td>{{ invent.name }}</td>
+          <td>{{ invent.picture }}</td>
+          <td>{{ invent.qr }}</td>
+          <td>{{ invent.category.categoryName }}</td>
+          <td>{{ invent.quality.qualityName }}</td>
+          <td>{{ invent.location.locationName }}</td>
+          <td>{{ invent.client }}</td>
+          <td>{{ invent.status }}</td>
+        </tr>
       </tbody>
     </table>
-    <div class="button-container">
-  <button @click="addInvents">Добавить</button>
-  <button @click="delInvents">Удалить</button>
-  <button @click="redInvents">Редактировать</button>
-  <button @click="create">Создать</button>
-</div>
+    <button @click="searchInvents">Найти</button>
+    <button @click="downloadExcel">Скачать Excel</button>
   </div>
+
+  <!--  <div class="button-container">-->
+  <!--<button @click="addInvents">Добавить</button>-->
+  <!--<button @click="delInvents">Удалить</button>-->
+  <!--<button @click="redInvents">Редактировать</button>-->
+  <!--<button @click="create">Создать</button>-->
+<!--</div>-->
+  
 </body>
 </template>
 
@@ -106,12 +109,30 @@ export default {
       } catch (error) {
         console.error('Ошибка при выполнении запроса:', error);
       }
+    },
+    async downloadExcel() {
+      try {
+        const response = await axios({
+          url: 'http://localhost:8080/api/admin/downloadExcel',
+          method: 'GET',
+          responseType: 'blob', // Important
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'invents.xlsx'); //or any other extension
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (error) {
+        console.error('Ошибка при скачивании файла:', error);
+      }
     }
-    
-
-
   }
-  
 };
 </script>
 

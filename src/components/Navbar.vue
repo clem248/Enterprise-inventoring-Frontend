@@ -10,7 +10,7 @@
           <router-link to="/ProductForm" class="nav-link">Добавить продукт</router-link>
         </MDBNavbarItem>
         <MDBNavbarItem linkClass="link-secondary">
-          <router-link to="/InventsTable" class="nav-link">Список инвентарных предметов</router-link>
+          <router-link to="/InventsTable" class="nav-link">Список инвентаризированных предметов</router-link>
         </MDBNavbarItem>
         <MDBNavbarItem linkClass="link-secondary">
           <router-link to="/LocationTable" class="nav-link">Список местоположений</router-link>
@@ -18,15 +18,16 @@
         <MDBNavbarItem linkClass="link-secondary">
           <router-link to="/CategoryTable" class="nav-link">Список категорий</router-link>
         </MDBNavbarItem>
-        <MDBNavbarItem linkClass="link-secondary">
-          <button @click="logout">Выйти</button>
-        </MDBNavbarItem>
+        <!-- <MDBNavbarItem linkClass="link-secondary">-->
+        <!--    <button @click="logout">Выйти</button>-->
+        <!--</MDBNavbarItem>-->
       </MDBNavbarNav>
     </MDBCollapse>
   </MDBNavbar>
 </template>
 
 <script>
+import axios from 'axios';
 import { ref } from 'vue';
 import {
   MDBNavbar,
@@ -49,7 +50,7 @@ export default {
     MDBNavbarToggler,
     MDBCollapse
   }
-};
+}
 </script>
 
 <style scoped src="../styles/styles.css"></style>

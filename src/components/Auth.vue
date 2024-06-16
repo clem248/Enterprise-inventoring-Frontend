@@ -13,6 +13,8 @@
       <button type="submit">Войти</button>
     </form>
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+    <p>Вы еще не зарегистрированы?</p>
+    <router-link to="/SignUp" class="nav-link"><button>Регистрация</button></router-link>
   </div>
 </template>
 
@@ -45,10 +47,17 @@ export default {
           this.errorMessage = 'Ошибка при авторизации';
         }
       } catch (error) {
-        this.errorMessage = 'Ошибка при отправке запроса';
+        this.esrrorMessage = 'Ошибка при отправке запроса';
       }
     }
-  }
+  },
+  //async SignUp(){
+  //  try {
+  //  this.$router.push('/SignUp');
+  //  } catch (error) {
+  //  this.esrrorMessage = 'Ошибка при отправке запроса';
+  //  }
+  //}
 };
 </script>
 

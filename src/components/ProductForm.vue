@@ -49,9 +49,9 @@
       </div>
       <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
-    <div class="button-container">
-    <button @click="downloadQR">Скачать</button>
-  </div>
+<!---   <div class="button-container">-->
+<!---    <button @click="downloadQR">Скачать</button>-->
+<!--- </div>-->
 
     <!-- Debug information -->
     <div class="debug">
@@ -159,6 +159,16 @@ export default {
         console.error('Ошибка при отправке запроса:', error);
       }
     }
+/*     async downloadQR (){
+      try{
+        const response = await axios.get('http://localhost:8080/api/admin/invent/download', this.qr,{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+      }
+
+    }*/
   }
 };
 

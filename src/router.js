@@ -5,10 +5,11 @@ import ProductForm from './components/ProductForm.vue';
 import InventsTable from './components/InventsTable.vue';
 import CategoryTable from "@/components/CategoryTable.vue";
 import LocationTable from "@/components/LocationTable.vue"; // Импорт нового компонента
-
+import SignUp from './components/SignUp.vue';
 const routes = [
     { path: '/', redirect: '/login' },
     { path: '/login', component: Auth },
+    { path: '/SignUp', component: SignUp },
     { path: '/home', component: Home, meta: { requiresAuth: true } },
     { path: '/ProductForm', component: ProductForm, meta: { requiresAuth: true } },
     { path: '/InventsTable', component: InventsTable, meta: { requiresAuth: true } },
