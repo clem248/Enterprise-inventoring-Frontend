@@ -4,8 +4,9 @@ import Home from './components/Home.vue';
 import ProductForm from './components/ProductForm.vue';
 import InventsTable from './components/InventsTable.vue';
 import CategoryTable from "@/components/CategoryTable.vue";
-import LocationTable from "@/components/LocationTable.vue"; // Импорт нового компонента
+import LocationTable from "@/components/LocationTable.vue";
 import SignUp from './components/SignUp.vue';
+
 const routes = [
     { path: '/', redirect: '/login' },
     { path: '/login', component: Auth },
@@ -15,7 +16,6 @@ const routes = [
     { path: '/InventsTable', component: InventsTable, meta: { requiresAuth: true } },
     { path: '/CategoryTable', component: CategoryTable, meta: { requiresAuth: true } },
     { path: '/LocationTable', component: LocationTable, meta: { requiresAuth: true } }
-
 ];
 
 const router = createRouter({

@@ -39,8 +39,8 @@
         username: '',
         email: '',
         password: '',
-        selectedRole: 'ROLE_MANAGER', // Default role
-        roles: ['ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN'], // Define available roles
+        selectedRole: 'manager',
+        roles: ['manager', 'admin', 'super_admin'],
         error: '',
       };
     },

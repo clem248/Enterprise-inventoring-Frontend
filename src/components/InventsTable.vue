@@ -22,9 +22,9 @@
           <td>{{ invent.name }}</td>
           <td>{{ invent.picture }}</td>
           <td>{{ invent.qr }}</td>
-          <td>{{ invent.category.categoryName }}</td>
-          <td>{{ invent.quality.qualityName }}</td>
-          <td>{{ invent.location.locationName }}</td>
+          <td>{{ invent.category && invent.category.categoryName }}</td>
+          <td>{{ invent.quality && invent.quality.qualityName }}</td>
+          <td>{{ invent.location && invent.location.locationName }}</td>
           <td>{{ invent.client }}</td>
           <td>{{ invent.status }}</td>
         </tr>
@@ -71,7 +71,7 @@ export default {
 
       this.loading = true;
       try {
-        const response = await axios.get(`http://localhost:8080/api/admin/invent?page=${this.page}&size=${this.pageSize}`, {
+        const response = await axios.get(`http://localhost:8080/api/admin/invent`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
@@ -100,7 +100,7 @@ export default {
     },
     async searchInvents() {
       try {
-        const response = await axios.get('http://localhost:8080/api/admin/invent?page=1&size=1', {
+        const response = await axios.get('http://localhost:8080/api/admin/invent', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           }
@@ -112,9 +112,9 @@ export default {
     },
     async downloadExcel() {
       try {
-        const response = await axios({
-          url: 'http://localhost:8080/api/admin/downloadExcel',
-          method: 'GET',
+          const response = await axios({
+          url: 'http://localhost:8080/api/admin/invent/download',
+          method: 'get',
           responseType: 'blob', // Important
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -124,7 +124,7 @@ export default {
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', 'invents.xlsx'); //or any other extension
+        link.setAttribute('download', 'invents.xlsx');
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

@@ -18,9 +18,9 @@
         <MDBNavbarItem linkClass="link-secondary">
           <router-link to="/CategoryTable" class="nav-link">Список категорий</router-link>
         </MDBNavbarItem>
-        <!-- <MDBNavbarItem linkClass="link-secondary">-->
-        <!--    <button @click="logout">Выйти</button>-->
-        <!--</MDBNavbarItem>-->
+        <MDBNavbarItem linkClass="link-secondary">
+          <button @click="logout">Выйти</button>
+        </MDBNavbarItem>
       </MDBNavbarNav>
     </MDBCollapse>
   </MDBNavbar>
@@ -42,6 +42,14 @@ export default {
   setup() {
     const collapse7 = ref(false);
     return { collapse7 };
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      localStorage.removeItem('roles');
+      this.$router.push('/login');
+    }
   },
   components: {
     MDBNavbar,
