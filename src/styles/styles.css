@@ -18,6 +18,34 @@
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
+
+
+/* TABLES*//* TABLES*/
+/* TABLES*//* TABLES*/
+/* TABLES*//* TABLES*/
+
+.table-container {
+    padding: 2% 2% 0 2%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+
+
 .auth {
     max-width: 600px;
     margin: auto;
@@ -26,6 +54,11 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+
+/* button*//* button*/
+/* button*//* button*/
+/* button*//* button*/
 .button-container {
     padding: 20px;
 }
@@ -40,6 +73,15 @@ button [data-v-ce5adfa1]{
     border-radius: 5px;
     cursor: pointer;
     margin-left: 370px;
+}
+button,
+.btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 .QR{
     padding: 10px 20px;
@@ -85,15 +127,7 @@ input[type="role"],
     border-radius: 5px;
 }
 
-button,
-.btn {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+
 
 .error-message {
     color: red;
@@ -102,8 +136,8 @@ button,
 
 .navbar {
     background-color: #ff0000;
-    color: #000000;
-    padding: 10px 20px;
+    color: #123123;
+    padding: 15px 20px;
 }
 
 .navbar-brand {
@@ -120,14 +154,45 @@ button,
     margin-right: 20px;
 }
 
-.nav-link {
-    color: #000000;
-    text-decoration: none;
-}
 
 .nav-link:hover {
-    color: #2200ff;
+    color: #0b84ff;
 }
+.nav-link {
+    position: relative;
+    color: #000000 !important;
+    text-decoration: none;
+    padding-bottom: 5px;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #008dff;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+
+.btn-delete {
+    background-color: #d51f38; /* Красный цвет кнопки */
+    color: white; /* Белый текст */
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: #861020; /* Темно-красный при наведении */
+}
+
+
 
 .html {
     scrollbar-width: normal;

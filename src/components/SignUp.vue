@@ -51,21 +51,20 @@
             username: this.username,
             email: this.email,
             password: this.password,
-            role: [this.selectedRole], // Send role as an array
+            role: [this.selectedRole],
           });
   
           if (response.status === 200) {
             console.log('User registered successfully!');
-            this.$router.push('/login'); // Redirect to login page or desired location
+            this.$router.push('/login');
           } else {
             console.error('Registration failed:', response.data);
-            this.error = response.data.message || 'Registration failed'; // Handle error messages
+            this.error = response.data.message || 'Registration failed';
           }
         } catch (error) {
           console.error('Error during registration:', error.response || error.message);
-          this.error = (error.response && error.response.data.message) || 'An unexpected error occurred'; // Handle unexpected errors
+          this.error = (error.response && error.response.data.message) || 'An unexpected error occurred';
         } finally {
-          // Optionally reset registration form
           this.username = '';
           this.email = '';
           this.password = '';

@@ -11,24 +11,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(category, index) in categories" :key="category.id">
-            <td>{{ category.id }}</td>
-            <td>{{ category.categoryName }}</td>
-            <td>
-              <button @click="deleteCat(index)">Удалить</button>
-            </td>
-          </tr>
-          <tr>
-            <td><input type="text" v-model="newCategory.id" placeholder="ID (optional)"></td>
-            <td><input type="text" v-model="newCategory.categoryName" placeholder="Название"></td>
-            <td>
-              <button @click="createCat">Создать</button>
-            </td>
-          </tr>
+        <tr>
+          <td><input type="text" v-model="newCategory.id" placeholder="ID (optional)"></td>
+          <td><input type="text" v-model="newCategory.categoryName" placeholder="Название"></td>
+          <td>
+            <button @click="createCat">Создать</button>
+          </td>
+        </tr>
+        <tr v-for="(category, index) in categories" :key="category.id">
+          <td>{{ category.id }}</td>
+          <td>{{ category.categoryName }}</td>
+          <td>
+            <button @click="deleteCat(index)" class="btn-delete">Удалить</button>
+          </td>
+        </tr>
+
         </tbody>
       </table>
-      <div class="button-container">
-        <button @click="addCat">Показать форму создания (optional)</button> </div>
     </div>
   </body>
 </template>
