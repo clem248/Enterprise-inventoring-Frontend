@@ -2,7 +2,7 @@
   <body>
   <div class="form-container">
     <h2>Добавить продукт и скачать QR</h2>
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="onSubmit" enctype="multipart/form-data">
       <div class="form-group">
         <label for="name">Название:</label>
         <input type="text" id="name" v-model="product.name" class="form-control" required>
@@ -24,10 +24,6 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="inventNumber">Инвентарный номер:</label>
-        <input type="text" id="inventNumber" v-model="product.qr" class="form-control" required>
-      </div>
-      <div class="form-group">
         <label for="location">Расположение:</label>
         <select id="location" v-model="product.location.locationName" class="form-control" required>
           <option v-for="location in locations" :key="location" :value="location">
@@ -36,22 +32,19 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="clientId">ID Клиента:</label>
-        <input type="text" id="clientId" v-model="product.client" class="form-control" required>
+        <label for="client">ID Клиента:</label>
+        <select id="client" v-model="product.client.fullName" class="form-control" required>
+          <option v-for="client in clients" :key="client.id" :value="client.fullName">
+            {{ client.fullName }}
+          </option>
+        </select>
       </div>
       <div class="form-group">
-        <label for="picture">Картинка:</label>
-        <input type="text" id="picture" v-model="product.picture" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="status">Статус:</label>
-        <input type="text" id="status" v-model="product.status" class="form-control">
+        <label for="file">Выбрать файл:</label>
+        <input type="file" id="file" ref="file" class="form-control" required>
       </div>
       <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
-<!---   <div class="button-container">-->
-<!---    <button @click="downloadQR">Скачать</button>-->
-<!--- </div>-->
 
     <!-- Debug information -->
     <div class="debug">
@@ -59,10 +52,13 @@
       <pre>Categories: {{ categories }}</pre>
       <pre>Qualities: {{ qualities }}</pre>
       <pre>Locations: {{ locations }}</pre>
+      <pre>Clients: {{ clients }}</pre>
     </div>
   </div>
-</body>
+  </body>
 </template>
+
+
 
 <script>
 import axios from 'axios';
@@ -77,12 +73,13 @@ export default {
         category: { categoryName: '' },
         quality: { qualityName: '' },
         location: { locationName: '' },
-        client: '',
+        client: { fullName: '' },
         status: ''
       },
       categories: [],
       qualities: [],
-      locations: []
+      locations: [],
+      clients: []
     };
   },
   mounted() {
@@ -90,6 +87,7 @@ export default {
     this.fetchCategories();
     this.fetchQualities();
     this.fetchLocations();
+    this.fetchClients();
   },
   methods: {
     async fetchCategories() {
@@ -131,17 +129,40 @@ export default {
         console.error('Ошибка при загрузке локаций:', error);
       }
     },
-    async onSubmit() {
+    async fetchClients() {
       try {
-        const response = await axios.post('http://localhost:8080/api/admin/invent/save', this.product, {
+        const response = await axios.get('http://localhost:8080/api/admin/AllClients', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         });
+        this.clients = response.data;
+        console.log('Clients loaded:', this.clients);
+      } catch (error) {
+        console.error('Ошибка при загрузке клиентов:', error);
+      }
+    },
+    async onSubmit() {
+      try {
+        const formData = new FormData();
+        formData.append('name', this.product.name);
+        formData.append('category.categoryName', this.product.category.categoryName);
+        formData.append('quality.qualityName', this.product.quality.qualityName);
+        formData.append('location.locationName', this.product.location.locationName);
+        formData.append('client.fullName', this.product.client.fullName);
 
-        if (response.status === 201) {
+        const file = this.$refs.file.files[0];
+        formData.append('file', file);
+
+        const response = await axios.post('http://localhost:8080/api/admin/invent/save', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+
+        if (response.status === 200) {
           console.log('Продукт успешно добавлен:', response.data);
-          // Очистка формы после успешной отправки
           this.product = {
             name: '',
             picture: '',
@@ -149,7 +170,7 @@ export default {
             category: { categoryName: '' },
             quality: { qualityName: '' },
             location: { locationName: '' },
-            client: '',
+            client: { fullName: '' },
             status: ''
           };
         } else {
@@ -159,32 +180,18 @@ export default {
         console.error('Ошибка при отправке запроса:', error);
       }
     }
-/*     async downloadQR (){
-      try{
-        const response = await axios.get('http://localhost:8080/api/admin/invent/download', this.qr,{
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-      }
-
-    }*/
   }
 };
-
 </script>
 
-<style scoped>
-/* Your existing styles */
 
+
+
+<style scoped>
 .debug {
   margin-top: 20px;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   padding: 10px;
 }
-
-
 </style>
-
-

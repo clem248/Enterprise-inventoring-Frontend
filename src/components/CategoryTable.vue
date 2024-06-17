@@ -61,28 +61,28 @@ export default {
     },
     async createCat() {
       try {
-        const response = await axios.post('http://localhost:8080/api/admin/categories', this.newCategory, { // Include newCategory directly in request body
+        const response = await axios.post('http://localhost:8080/api/admin/categories', this.newCategory, {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`, // Include authorization header if needed
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         });
 
-        if (!response.ok) {
-          throw new Error('Failed to create category');
-        }
+        const createdCategory = response.data; // Ответ содержит созданную категорию
+        this.categories.push(createdCategory); // Добавляем созданную категорию в список
 
-        const createdCategory = await response.json();
-        this.categories.push(createdCategory); // Add the newly created category to the list locally
-        this.newCategory = {}; // Reset the newCategory object for future entries
+        // Очищаем поля ввода для новой категории
+        this.newCategory = {};
 
-        // Handle success (e.g., display a success message)
+        // Вместо вывода в консоль можно показать сообщение пользователю
         console.log('Category created successfully!');
+
       } catch (error) {
         console.error('Error creating category:', error);
-        // Handle errors appropriately (e.g., display an error message to the user)
+        // Здесь можно добавить обработку ошибок
       }
     },
+
     deleteCat(index) {
       // Assuming you have a backend method to delete by ID:
       const categoryId = this.categories[index].id; // Get ID of the category to delete

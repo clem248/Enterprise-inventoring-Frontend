@@ -7,7 +7,7 @@
       <label for="searchId">Поиск по ID:</label>
       <input v-model="searchId" type="text" id="searchId">
       <button @click="searchById">Найти по ID</button>
-      <button @click="searchInvents">Сбросить</button>
+      <button @click="resetSearch" class="resetSearch">Сбросить</button>
     </div>
     <table class="table">
       <thead>
@@ -27,12 +27,18 @@
       <tr v-for="invent in invents" :key="invent.id">
         <td>{{ invent.id }}</td>
         <td>{{ invent.name }}</td>
-        <td>{{ invent.picture }}</td>
-        <td>{{ invent.qr }}</td>
+        <td>
+          <img v-if="invent.picture" :src="invent.picture" style="max-width: 100px; max-height: 100px;">
+          <span v-else>Нет изображения</span>
+        </td>
+        <td>
+          <img v-if="invent.qr" :src="invent.qr" style="max-width: 100px; max-height: 100px;">
+          <span v-else>Нет изображения</span>
+        </td>
         <td>{{ invent.category && invent.category.categoryName }}</td>
         <td>{{ invent.quality && invent.quality.qualityName }}</td>
         <td>{{ invent.location && invent.location.locationName }}</td>
-        <td>{{ invent.client }}</td>
+        <td>{{ invent.client && invent.client.fullName}}</td>
         <td>{{ invent.status }}</td>
       </tr>
       </tbody>
@@ -65,11 +71,18 @@ export default {
   },
   methods: {
     async fetchInvents() {
-      if (this.loading || this.allDataLoaded) return;
+      if (this.loading) return;
 
       this.loading = true;
       try {
-        const response = await axios.get(`http://localhost:8080/api/admin/invent?page=${this.page}&pageSize=${this.pageSize}`, {
+        let url = `http://localhost:8080/api/admin/invent?page=${this.page}&size=${this.pageSize}`;
+
+        // Если есть активный поиск по ID, добавляем его в запрос
+        if (this.searchId.trim()) {
+          url += `&id=${this.searchId.trim()}`;
+        }
+
+        const response = await axios.get(url, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
@@ -80,7 +93,11 @@ export default {
           this.allDataLoaded = true;
         }
 
-        this.invents = [...this.invents, ...data];
+        if (this.page === 1) {
+          this.invents = data;
+        } else {
+          this.invents = [...this.invents, ...data];
+        }
         this.page++;
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
@@ -96,16 +113,25 @@ export default {
         this.fetchInvents();
       }
     },
-    async searchInvents() {
+    async resetSearch() {
+      this.searchId = ''; // Очищаем поле поиска
+      this.page = 1; // Сбрасываем страницу до первой
+      this.allDataLoaded = false; // Сбрасываем флаг загрузки всех данных
+      await this.fetchInvents(); // Вызываем fetchInvents() для загрузки всех предметов
+    },
+    async searchById() {
+      if (!this.searchId.trim()) {
+        return; // Не выполняем поиск, если поле поиска пустое
+      }
       try {
-        const response = await axios.get('http://localhost:8080/api/admin/invent', {
+        const response = await axios.get(`http://localhost:8080/api/admin/invent/${this.searchId.trim()}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           }
         });
-        this.invents = response.data;
+        this.invents = [response.data]; // Заменяем массив инвентаризированных предметов найденным объектом
       } catch (error) {
-        console.error('Ошибка при выполнении запроса:', error);
+        console.error('Ошибка при выполнении запроса по ID:', error);
       }
     },
     async downloadExcel() {
@@ -129,25 +155,11 @@ export default {
       } catch (error) {
         console.error('Ошибка при скачивании файла:', error);
       }
-    },
-    async searchById() {
-      if (!this.searchId.trim()) {
-        return; // Не выполняем поиск, если поле поиска пустое
-      }
-      try {
-        const response = await axios.get(`http://localhost:8080/api/admin/invent/${this.searchId.trim()}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          }
-        });
-        this.invents = [response.data]; // Заменяем массив инвентаризированных предметов найденным объектом
-      } catch (error) {
-        console.error('Ошибка при выполнении запроса по ID:', error);
-      }
     }
   }
 };
 </script>
+
 
 <style scoped>
 .table-container {
@@ -167,6 +179,10 @@ export default {
 .table th {
   background-color: #f2f2f2;
   text-align: left;
+}
+.resetSearch{
+  margin-left: 5px;
+  background: #930d0d;
 }
 
 /* Стили для поля поиска и кнопки */

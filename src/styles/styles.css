@@ -130,12 +130,12 @@ input[type="role"],
 
 
 .error-message {
-    color: red;
+    color: #930d0d;
     margin-top: 10px;
 }
 
 .navbar {
-    background-color: #ff0000;
+    background-color: #930d0d;
     color: #123123;
     padding: 15px 20px;
 }

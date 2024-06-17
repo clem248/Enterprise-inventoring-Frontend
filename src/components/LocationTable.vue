@@ -68,19 +68,18 @@ export default {
           },
         });
 
-        if (!response.ok) {
-          throw new Error('Failed to create location');
-        }
-
-        const createdLocation = await response.json();
+        const createdLocation = response.data;
         this.locations.push(createdLocation);
+
         this.newLocation = {};
 
         console.log('Location created successfully!');
+
       } catch (error) {
         console.error('Error creating location:', error);
       }
     },
+
     deleteLoc(index) {
       const locationId = this.locations[index].id;
       if (locationId) {
